@@ -1,0 +1,283 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+$blac: #050508;
+$orange1: #cd483f;
+$orange: rgb(255, 72, 0);
+$pinc: #e29b9d;
+$brown: #3c242e;
+$white: #fefefe;
+$ash: rgb(236, 228, 228);
+$ash1: #a09f9f;
+$ash2: #8f838d;
+
+$mobile: 426px;
+
+@mixin mobile {
+  @media (max-width: #{$mobile}) {
+    @content;
+  }
+}
+
+.togg {
+  display: block;
+}
+
+.container {
+  background: $blac;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas: "section1" "section2" "section3";
+}
+
+.section1 {
+  background: url("pics/vol2.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  //border: 1px solid red;
+  grid-area: section1;
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  grid-template-areas: "menu" "content" "section" "pics";
+
+  nav {
+    //border: 1px solid red;
+    margin: 5% 0 10% 0;
+    grid-area: menu;
+    grid-column: 2/11;
+
+    .logo,
+    .menu,
+    .show {
+      display: none;
+    }
+
+    @include mobile {
+      //border: 1px solid red;
+      margin: 5% 0 10% 0;
+      #m1 {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      #ul {
+        display: none;
+      }
+
+      .logo,
+      .menu {
+        display: block;
+        color: $white;
+      }
+
+      .menu {
+        background: red;
+        border-radius: 5px;
+        width: 50px;
+        text-align: center;
+      }
+
+      .show {
+        display: none;
+        margin: 5% 0 0 0;
+        ul {
+          display: flex;
+          flex-direction: column;
+        }
+
+        li {
+          text-align: auto;
+          //background: $orange;
+          border: none;
+          border-left: 1px solid red;
+          padding: 5%;
+          margin: 2%;
+        }
+        a {
+          color: $white;
+        }
+      }
+    }
+
+    li {
+      display: inline-block;
+      padding-right: 5%;
+    }
+
+    a {
+      text-decoration: none;
+      color: $white;
+    }
+  }
+
+  .sec1Content {
+    //border: 1px solid rgb(0, 255, 34);
+    grid-area: content;
+    grid-column: 2/-1;
+
+    @include mobile {
+      grid-column: 2/11;
+    }
+
+    h1 {
+      font-weight: bold;
+      font-size: 80px;
+      color: $white;
+
+      @include mobile {
+        font-size: 40px;
+        margin: 15% 0 5% 0;
+      }
+    }
+
+    p {
+      margin: 5% 0 0 0;
+      color: $ash;
+      width: 50%;
+      line-height: 30px;
+
+      @include mobile {
+        width: 80%;
+        margin: 10% 0 10% 0;
+      }
+    }
+
+    #search {
+      display: inline-block;
+      margin: 5% 0 0 0;
+
+      @include mobile {
+        margin: 0 0 25% 0;
+      }
+
+      input {
+        width: 285px;
+        height: 50px;
+        border: none;
+        border-left: 4px solid $orange;
+
+        @include mobile {
+          width: 160px;
+          height: 40px;
+        }
+      }
+
+      ::placeholder {
+        padding-left: 20px;
+      }
+
+      button {
+        width: 80px;
+        height: 50px;
+        background: $orange;
+        color: $white;
+        border: none;
+
+        @include mobile {
+          width: 70px;
+          height: 40px;
+        }
+      }
+    }
+  }
+
+  .sec1section {
+    grid-area: section;
+    grid-column: 2/12;
+    margin: 15% 0 0 0;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "pic text";
+
+    @include mobile {
+      margin: 10% 0 0 0;
+      grid-template-columns: 1fr;
+      grid-template-rows: 2fr 3fr;
+      grid-template-areas: "pic" "text";
+    }
+
+    #pic {
+      grid-area: pic;
+      background: url("pics/nature1.jpg");
+      background-position: center;
+      background-size: cover;
+    }
+
+    #text {
+      grid-area: text;
+      margin: 0 0 0 5%;
+    }
+
+    h2 {
+      color: $white;
+      font-size: 40px;
+
+      @include mobile {
+        font-size: 30px;
+        margin: 5% 0 0 0;
+      }
+    }
+
+    p {
+      margin: 5% 0 5% 0;
+      color: $ash;
+      width: 60%;
+      line-height: 25px;
+
+      @include mobile {
+        width: 80%;
+      }
+    }
+
+    button {
+      width: 120px;
+      height: 50px;
+      background: $orange;
+      border: none;
+      color: $white;
+
+      @include mobile {
+        height: 40px;
+      }
+    }
+  }
+
+  .pictures {
+    margin: 3% 0 5% 0;
+    //border: 1px solid red;
+    grid-area: pics;
+    grid-column: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 300px;
+    grid-gap: 2%;
+
+    @include mobile {
+      grid-template-rows: 100px;
+    }
+
+    #one {
+      grid-column: 2/3;
+      background: url("pics/nature2.jpg");
+    }
+
+    #two {
+      grid-column: 3/-1;
+      background: url("pics/nature3.jpg");
+    }
+
+    #one,
+    #two {
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}
